@@ -1,0 +1,14 @@
+
+
+
+
+
+File Password Cracking
+Rar file
+    1-. Obtener hash del archivo con rar2john
+        Comando: rar2john archivo.rar > hash 
+        archive.rar:$rar5$16$50d889a2c6441510dd0c8ab76dde4fd6$15$697757daca178f6f88135491827bdad6$8$e13f0c4d2f8286d5
+        
+    2-. Crackear archivo hash 
+        Comando: john hash -w ./rockyou.txt
+        
