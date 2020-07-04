@@ -12,3 +12,10 @@ Rar file
     2-. Crackear archivo hash 
         Comando: john hash -w ./rockyou.txt
         
+Zip file
+    1-. Obtener hash del archivo con zip2john 
+        Comando: zip2john archive.zip > hash
+        archive.zip:$pkzip2$1*2*2*0*2d*21*c10509e*0*3f*0*2d*0c10*360a*f5e92c2b27b0f6ece97e6030ccb3338eb42b7c5ec117f4b49bfb0232e1e45e1673c6ef2fb8c952ba2410a770aa*$/pkzip2$:::::archive.zip
+        
+    2-. Crackear archivo hash 
+        Comando: john hash -w ./rockyou.txt 
