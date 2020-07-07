@@ -19,3 +19,27 @@ Zip file
         
     2-. Crackear archivo hash 
         Comando: john hash -w ./rockyou.txt 
+        
+        
+WinZip File
+    1-. Obtener hash del archivo con zip2john 
+        Comando: zip2john archive.zip > hash
+        archive.zip:$zip2$*0*3*0*4359ff429775624a78816af6d296ef98*42d7*20*5876ee6ac818147d5fb1a98c863d1fcc18f116003eeacbcc272673ce8b96af91*710baaff8d1c4a02ecd7*$/zip2$:::::archive.zip-token.txt
+        ver 2.0 archive.zip->token.txt PKZIP Encr: cmplen=60, decmplen=32, crc=35ABFDE6
+        archive.zip:$pkzip2$1*1*2*0*3c*20*35abfde6*0*32*63*3c*35ab*75d2*4359ff429775624a78816af6d296ef9842d75876ee6ac818147d5fb1a98c863d1fcc18f116003eeacbcc272673ce8b96af91710baaff8d1c4a02ecd7*$/pkzip2$:::::archive.zip
+
+    2-. Crackear archivo hash
+        Comando: john hash -w ./rockyou.txt
+    
+
+SSH known_hosts File
+    Herramientas:
+    https://github.com/chris408/known_hosts-hashcat
+    
+    1-. Convertir archivo known_hosts a hash
+        Comando: python kh-converter.py ../../known_hosts > ../../hash 
+        
+    2-. Crackear archivo hash con hashcat
+        Comando: hashcat -m 160 hash -a 3 tools/known_hosts-hashcat/ipv4_hcmask.txt
+       
+    
