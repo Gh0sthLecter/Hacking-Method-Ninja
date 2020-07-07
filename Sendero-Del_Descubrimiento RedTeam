@@ -29,6 +29,9 @@ https://attack.mitre.org/techniques/T1217/
          Comando: sqlite3 'Hindsight Report (2020-07-07T05-20-09).sqlite' - .tables .schema etc..
     
  
-<b>System Owner/User Discovery</b>
-<b>Descubrimiento de nombres y cuentas de usuario.</b>
+System Owner/User Discovery
+Descubrimiento de nombres y cuentas de usuario.
 https://attack.mitre.org/techniques/T1033/
+
+  Comando Linux: w, who
+  Windows Comando: net users, whoami
