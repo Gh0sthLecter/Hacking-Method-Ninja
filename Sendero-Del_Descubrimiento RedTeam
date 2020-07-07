@@ -1,0 +1,31 @@
+
+
+
+Browser Bookmark Pwn
+Forense en exploradores web.
+https://attack.mitre.org/techniques/T1217/
+
+  Herramienta Infornito: https://github.com/globecyber/Infornito
+  > Revisión de historial en explorador
+      Comando: python3 infornito.py history --profile 4 (Revisar los perfiles con "profiles") 
+  > Revisión de descargas en explorador
+      Comando: python3 infornito.py downloads --profile 4
+  > Descarga de cookies, Bookmarks, databases, passwords
+      Comando: python3 infornito.py export --profile 4
+  
+  Herramienta Dumpzilla: https://github.com/Busindre/dumpzilla
+  Buscar la ruta del archivo firefox - Comando: ls -la ".mozilla/firefox/zevp8nk2.default"
+  > Obtención de passwords en explorador
+     Comando: python dumpzilla.py  .mozilla/firefox/zevp8nk2.default --Passwords
+  > Revisión de descargas en explorador
+     Comando: python dumpzilla.py .mozilla/firefox/zevp8nk2.default --Downloads
+  > Revisión de bookmarks
+    Comando: python dumpzilla.py .mozilla/firefox/zevp8nk2.default --Bookmarks
+    
+  Herramienta Hindsight: https://github.com/obsidianforensics/hindsight
+  Esta se puede descargar 3 tipos de informes (xls, sqlite, jsonl) 
+  > Dumpeo de información para ingreso con sqlite3
+    Comando: python hindsight.py -i ../../.config/google-chrome/Default --format sqlite
+    Comando: sqlite3 'Hindsight Report (2020-07-07T05-20-09).sqlite' - .tables .schema etc..
+    
+ 
