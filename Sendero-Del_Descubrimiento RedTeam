@@ -2,7 +2,7 @@
 
 
 Browser Bookmark Pwn
-Forense en exploradores web.
+Forense de exploradores web.
 https://attack.mitre.org/techniques/T1217/
 
   Herramienta Infornito: https://github.com/globecyber/Infornito
@@ -29,3 +29,6 @@ https://attack.mitre.org/techniques/T1217/
          Comando: sqlite3 'Hindsight Report (2020-07-07T05-20-09).sqlite' - .tables .schema etc..
     
  
+<b>System Owner/User Discovery</b>
+<b>Descubrimiento de nombres y cuentas de usuario.</b>
+https://attack.mitre.org/techniques/T1033/
