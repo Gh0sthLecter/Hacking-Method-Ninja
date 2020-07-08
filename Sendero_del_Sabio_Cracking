@@ -41,6 +41,14 @@ SSH known_hosts File
         
     2-. Crackear archivo hash con hashcat
         Comando: hashcat -m 160 hash -a 3 tools/known_hosts-hashcat/ipv4_hcmask.txt
+        
+SSH Private Key Passphrase
+    1-. Identificar archivo id_rsa
+        Comando: file id_rsa
+    2-. Convertir archivo id_rsa a hash
+        Comando: ssh2john id_rsa > hash
+    3-. Crackear archivo hash con john
+        Comando: john hash -w ./rockyou.txt
        
 Extensión Docx File
     1-. Convertir archivo Archive.docx,doc a hash
