@@ -50,4 +50,9 @@ Extensión Docx File
         Comando: john --wordlist=1000000-password-seclists.txt hash
         
         
-
+Extensión pdf File
+    1-. Convertir archivo secret.pdf a hash
+    Comando: /root/tools/JohnTheRipper/pdf2john.pl ../../secret.pdf > ../../hash
+    
+    2-. Crackear archivo hash con john
+    Comando: john hash1 -w ../../wordlists/1000000-password-seclists.txt
