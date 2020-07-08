@@ -1,5 +1,12 @@
-
-
+Cracking Hashes
+MD5 hash
+    1-. Crackear hash md5 813446902666d346ab42151a3beaf5a9 con hashcat
+        Comando: hashcat -a 0 -m 0 archivo.txt rockyou.txt
+        Explicación -a 0 (Ataque de diccionario) -m 0 (md5 hash)
+        
+        Comando2: hashcat -m 0 archivo -a 3 -1 ?l?d ?1?1?1?1?1
+        Explicación -m (md5 hash) -a 3(Mask mode) -1 (l (small L) signifies group (a-z) and d (minor D) signifies group (0-9))
+        Recuerda ver la contraseña con --show
 
 
 
