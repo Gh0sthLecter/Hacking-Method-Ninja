@@ -42,4 +42,12 @@ SSH known_hosts File
     2-. Crackear archivo hash con hashcat
         Comando: hashcat -m 160 hash -a 3 tools/known_hosts-hashcat/ipv4_hcmask.txt
        
-    
+Extensión Docx File
+    1-. Convertir archivo Archive.docx,doc a hash
+        Comando: office2john Archive.docx > hash
+        
+    2-. Crackear archivo hash con john
+        Comando: john --wordlist=1000000-password-seclists.txt hash
+        
+        
+
