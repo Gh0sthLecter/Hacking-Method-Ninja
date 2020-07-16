@@ -35,3 +35,24 @@ https://attack.mitre.org/techniques/T1033/
 
   Comando Linux: w, who
   Windows Comando: net users, whoami
+  
+Software Discovery
+Descubrimiento de software instalado.
+https://attack.mitre.org/techniques/T1518/
+
+  Comando Linux: dpkg -l
+
+System Network Configuration Discovery
+Descubrimiento de configuraciones de red
+https://attack.mitre.org/techniques/T1016/
+   Comando Linux: ifconfig, route
+   Comando Windows: ipconfig, nbtstat -A [IP]
+
+System Network Connections Discovery
+Descubrimiento de red
+https://attack.mitre.org/techniques/T1049/
+  Comando Linux: 
+  Ver conexiones entrantes: netstat -an
+  Ver conexiones TCP entrantes: netstat -tnl
+  
+
