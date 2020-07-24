@@ -7,7 +7,53 @@ MD5 hash
         Comando2: hashcat -m 0 archivo -a 3 -1 ?l?d ?1?1?1?1?1
         Explicación -m (md5 hash) -a 3(Mask mode) -1 (l (small L) signifies group (a-z) and d (minor D) signifies group (0-9))
         Recuerda ver la contraseña con --show
-
+        
+Salted MD5 hash
+    1-. Adaptar el hash con el tipo de salt
+    Comando: cat digest.txt (cf0b18ddb1a31d05fc73f50fcd29e0a8:salt123)
+    2-. Crackear el hash
+    Comando: hashcat -a 0 -m 10 digest.txt 1000000-password-seclists.txt
+    
+HMAC-SHA1 key
+    1-. Adaptar el hash con el tipo de hash (cf0b18ddb1a31d05fc73f50fcd29e0a8:thinkbell)
+    2-. Crackear el hash
+    Comando: hashcat -a 0 -m 150 digest.txt 1000000-password-seclists.txt
+    
+CRC32s
+    1-. Adaptar el hash con el tipo de hash (dbaeedcb:00000000)
+    2-. Crackear el hash
+    Comando: hashcat -a 0 -m 11500 digest.txt 1000000-password-seclists.txt
+    
+SHA-1 Hashes
+    1-. Identificar el hash en el archivo digest.txt (cc073bd804eaf7b2c1705264c97e55d234a91ae3)
+    2-. Crackear el hash
+    Comando: hashcat -a 0 -m 100 digest.txt 1000000-password-seclists.txt
+    
+SHA-2 Digests (SHA-384)
+    1-. Identificar el hash en el archivo digest.txt (1d6ce93c79c8c3aca3312268e8ee30bccf8b534e498d639307c276d502bdbf356f8b309bfc1817225d7f6a11460b15ca)
+    2-. Crackear el hash
+    Comando: hashcat -a 3 -m 10800 digest.txt -1 ?l?d ?1?1?1?1?1
+    
+SHA-3 Digests 
+    1-. Identificar el hash en el archivo digest.txt (0aa8ffe277db824c20eb5d0cb3ea78cb6ab74093249cae3c762f2b7d1c56c881)
+    2-. Crackear el hash
+    Comando: hashcat -a 0 -m 50000 digest.txt 1000000-password-seclists.txt
+    
+NTLM Hashes    
+    1-. Identificar el hash en el archivo digest.txt (f06343aad24fe6a96e675f6d8adf1c44)
+    2-. Crackear el hash
+    Comando: hashcat -a 3 -m 1000 digest.txt -1 ?l?d ?1?1?1?1?1
+    
+MD5Crypt Digests
+    1-. Identificar el hash en el archivo digest.txt ($1$s1ty35f$Si..C51.0l58LJ76G7crB/)
+    2-. Crackear el hash
+    Comando: hashcat -a 0 -m 500 digest.txt 1000000-password-seclists.txt
+    
+ Bcrypt Hashes
+    1-. Identificar el hash en el archivo digest.txt ($2a$04$gLX3.eb.sPNURq3Y87bx/eUC9Ysw6mZhi1HAWvy07DWYyw9zYI3.W) 
+    2-. Crackear el hash
+    Comando: hashcat -a 3 -m 3200 digest.txt -1 ?l?d ?1?1?1
+    
 File Password Cracking
 Rar file
     1-. Obtener hash del archivo con rar2john
