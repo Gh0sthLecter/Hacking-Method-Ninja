@@ -15,6 +15,7 @@ O (Other) = (Otro tipo de usuario o grupo)
 -rw-rw---- 1 teacher admin      12 Apr  6 22:27 guidelines
 -r--r----- 1 student admin      10 Apr  6 22:27 readme.txt
 
+MAS INFORMACIÓN: https://gist.github.com/juanarbol/c44e736be70279c1fd5d68aa24f9d8be
 --------------------------------------------------------------
 
 Permiso de archivo
@@ -53,7 +54,3 @@ uid=999(student) gid=999(student) euid=0(root) groups=999(student)
 bash-5.0# whoami
 root
 
-
-
-
-MAS INFORMACIÓN: https://gist.github.com/juanarbol/c44e736be70279c1fd5d68aa24f9d8be
