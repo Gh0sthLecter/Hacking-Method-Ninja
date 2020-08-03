@@ -71,6 +71,10 @@ Zip file
     2-. Crackear archivo hash 
         Comando: john hash -w ./rockyou.txt 
         
+    2do Metodo
+    1-. Utilizar fcrackzip para encontrar las posibles credenciales
+        Comando: frackzip -D -u -p ./rockyou.txt backup.zip
+        
         
 WinZip File
     1-. Obtener hash del archivo con zip2john 
