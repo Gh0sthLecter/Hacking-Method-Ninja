@@ -1,6 +1,8 @@
 Herramientas para escanear subdominios
 
 > dnsenum
-> knock
+> knockpy
 > sublist3r
+> theHarvester
+> nslookup
 
