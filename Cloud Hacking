@@ -1,0 +1,49 @@
+Buckets AWS
+
+http://BUCKETNAME.s3.amazonaws.com/FILENAME.ext 
+
+or
+
+http://s3.amazonaws.com/BUCKETNAME/FILENAME.ext
+
+List cointain bucket
+> curl http://irs-form-990.s3.amazonaws.com/
+> aws s3 ls s3://irs-form-990/ --no-sign-request
+
+The option --no-sign-request allows you to request data from S3 without being an AWS Customer. 
+
+Downloading Objects
+
+> curl http://irs-form-990.s3.amazonaws.com/201101319349101615_public.xml
+
+> aws s3 cp s3://irs-form-990/201101319349101615_public.xml . --no-sign-request
+
+Conducting Reconnaissance with IAM
+When you find credentials to AWS, you can add them to your AWS Profile in the AWS CLI. For this, you use the command:
+
+> aws configure --profile PROFILENAME
+
+Once you have configured a new profile with the new access keys, you can execute any command using this other set of credentials. For example, to list all the S3 Buckets in the AWS account you have found credentials for, try:
+
+> aws s3 ls --profile PROFILENAME
+
+A few other common AWS reconnaissance techniques are:
+
+Finding the Account ID belonging to an access key:
+
+> aws sts get-access-key-info --access-key-id AKIAEXAMPLE 
+
+Determining the Username the access key you're using belongs to
+
+> aws sts get-caller-identity --profile PROFILENAME
+
+Listing all the EC2 instances running in an account
+
+> aws ec2 describe-instances --output text --profile PROFILENAME
+
+Listing all the EC2 instances running in an account in a different region
+> aws ec2 describe-instances --output text --region us-east-1 --profile PROFILENAME
+
+
+
+
