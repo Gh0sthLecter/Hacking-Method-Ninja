@@ -3,22 +3,27 @@ Herramientas
   2- WpSeku
   3- CMSeek
   
+  Primeros pasos.
   - Visualizar plugins y ver sus versiones, compararlo con exploitdb
   - Visualizar temas y ver sus versiones, compararlo con exploitdb
   - Visualizar usuarios y hacer bruteforce.
-  
-Se puede subir shells directamente modificando los plugins o themas y utilizar php reverse shell de pentestmonkey
+Al encontrar credenciales
+  - Se puede subir shells directamente modificando los plugins o themas y utilizar php reverse shell de pentestmonkey
+  - Si el usuario no tiene permisos de modificar plugins y temas, probar las siguientes vulns
+    https://windsorwebdeveloper.com/dc-6-vulnhub-walkthrough/
+    Vulnerable Plugin #1: Plainview Activity Monitor (RCE)
+    Vulnerable Plugin #2: User Role Editor (Privilege Escalation)
 
-Si el usuario no tiene permisos de modificar plugins y temas, probar las siguientes vulns
-https://windsorwebdeveloper.com/dc-6-vulnhub-walkthrough/
+En caso que no se pueda subir shell por medio de los temas o plugins utilizar metasploit
+exploit/unix/webapp/wp_admin_shell_upload
 
-Vulnerable Plugin #1: Plainview Activity Monitor (RCE)
-Vulnerable Plugin #2: User Role Editor (Privilege Escalation)
+Bruteforce
+    Utilizar cewl para sacar las palabras clave para hacer bruteforce
+    // cewl http://pagina.com > wordlist.txt
 
-Utilizar cewl para sacar las palabras clave para hacer bruteforce
-
-// cewl http://pagina.com > wordlist.txt
-
+    Las listas que me han servido rockyou.txt y fasttrack.txt
+    
+RECORDEMOS QUE WORDPRESS ES UN CMS Y EXISTEN 3 FORMAS DE OBTENER SHELL, BRUTEFORCE, COMPLEMENTOS VULNERABLES, ERRORES HUMANOS.
 
 
 
