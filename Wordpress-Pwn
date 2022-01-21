@@ -9,6 +9,8 @@ Herramientas
   - Visualizar usuarios y hacer bruteforce.
 Al encontrar credenciales
   - Se puede subir shells directamente modificando los plugins o themas y utilizar php reverse shell de pentestmonkey
+    Verificar si todos los plugins o temas ya sean activos o inactivos se puede escribir informacion.
+    
   - Si el usuario no tiene permisos de modificar plugins y temas, probar las siguientes vulns
     https://windsorwebdeveloper.com/dc-6-vulnhub-walkthrough/
     Vulnerable Plugin #1: Plainview Activity Monitor (RCE)
