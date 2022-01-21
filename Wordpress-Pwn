@@ -1,0 +1,26 @@
+Herramientas
+  1- Wpscan
+  2- WpSeku
+  3- CMSeek
+  
+  - Visualizar plugins y ver sus versiones, compararlo con exploitdb
+  - Visualizar temas y ver sus versiones, compararlo con exploitdb
+  - Visualizar usuarios y hacer bruteforce.
+  
+Se puede subir shells directamente modificando los plugins o themas y utilizar php reverse shell de pentestmonkey
+
+Si el usuario no tiene permisos de modificar plugins y temas, probar las siguientes vulns
+https://windsorwebdeveloper.com/dc-6-vulnhub-walkthrough/
+
+Vulnerable Plugin #1: Plainview Activity Monitor (RCE)
+Vulnerable Plugin #2: User Role Editor (Privilege Escalation)
+
+Utilizar cewl para sacar las palabras clave para hacer bruteforce
+
+// cewl http://pagina.com > wordlist.txt
+
+
+
+
+
+
