@@ -157,3 +157,11 @@ WPA/WPA2 PEAP Cracking
 Wordpress passw0rds hash
     1- hashcat -a 0 -m 400 hash.txt /usr/share/wordlists/rockyou.txt
     
+Linux /etc/shadow
+    1-. Obtener los hashes del archivo
+    Comando: cat /etc/passwd
+    2-. Quitar el usuario y los permisos despues del :
+    buddy:$6$3GvJsNPG$ZrSFprHS13divBhlaKg1rYrYLJ7m1xsYRKxlLh0A1sUc/6SUd7UvekBOtSnSyBwk3vCDqBhrgxQpkdsNN6aYP1:18233:0:99999:7:::
+    //$6$3GvJsNPG$ZrSFprHS13divBhlaKg1rYrYLJ7m1xsYRKxlLh0A1sUc/6SUd7UvekBOtSnSyBwk3vCDqBhrgxQpkdsNN6aYP1 // Hash a crackear
+    3-. Usar hashcat 
+    Comando: hashcat -m 1800 filehash.txt /rockyou.txt --force
