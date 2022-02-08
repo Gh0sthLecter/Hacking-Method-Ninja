@@ -1,0 +1,102 @@
+
+Protocolos:
+465 SMTP (Simple Mail Transfer Protocol) - Envia emails
+993 POP3 (Post Office Protocol) - Transferir email entre cliente y servidor
+995 IMAP (Internet Message Access Protocol) - Transferir entre cliente y servidor
+------------------------------------------------------------------------------------------
+Email Syntax
+From: El que envia el mensaje
+Subject: Titulo del correo
+Date: Fecha
+To: Para el que recibe el mensaje
+------------------------------------------------------------------------------------------
+Obtener el RAW message del correo
+
+1- Ir a avanzado o los 3 puntos al final de cada correo
+2- View raw message o view source code
+------------------------------------------------------------------------------------------
+Extension: email1.eml
+------------------------------------------------------------------------------------------
+Email sample tecnicas
+> Correo electronico spoofeado
+> Sentido de urgencia
+> HTML para hacerse pasar por una marca legitima
+> Mala gramática y/o errores tipográficos
+> Archivos adjuntos
+> Servicios de acortamiento de URL o manipulación de enlaces
+> Tracking (seguimientos)
+> Manipulación de enlaces
+> Recolección de credenciales
+
+------------------------------------------------------------------------------------------
+Analisis del Email Header
+
+Tools
+Messageheader: https://toolbox.googleapps.com/apps/messageheader/analyzeheader
+Message Header Analyzer: https://mha.azurewebsites.net/
+Mail Header: https://mailheader.org/
+Mxtoolbox Email Header: https://mxtoolbox.com/EmailHeaders.aspx
+
+Revisar las IP's y URL's identificadas
+IPinfo.io: https://ipinfo.io/
+URLScan.io: https://urlscan.io/
+Talos Reputation Center: https://talosintelligence.com/reputation
+------------------------------------------------------------------------------------------
+Analisis del cuerpo del correo
+
+Tools
+URL Extractor: https://www.convertcsv.com/url-extractor.htm
+CyberChef - Extract URLs: https://gchq.github.io/CyberChef/
+
+Obtener el hash de los documentos adjuntos
+sha256sum file.dot
+
+Identificar el hash de los archivos
+Talos File Reputation: https://talosintelligence.com/talos_file_reputation
+VirusTotal: https://www.virustotal.com/gui/
+
+DNS check
+MX Lookup tool: https://mxtoolbox.com/
+------------------------------------------------------------------------------------------
+Malware Sandbox
+
+Tools
+Any.Run: https://app.any.run/
+Hybrid Analysis: https://www.hybrid-analysis.com/
+Joe Sandbox: https://www.joesecurity.org/
+
+PhishTool - herramienta automatizacion
+https://www.phishtool.com/
+------------------------------------------------------------------------------------------
+
+SPF (Marco de política del remitente / Sender Policy Framework
+Con un registro SPF, los proveedores de servicios de Internet pueden verificar que un servidor de correo está autorizado para enviar correo electrónico para un dominio específico. 
+Un registro SPF es un registro DNS TXT que contiene una lista de las direcciones IP que pueden enviar correos electrónicos en nombre de su dominio
+
+Registro de SPF Basico
+v=spf1 ip4:127.0.0.1 include:_spf.google.com -all
+
+Tool para revisar registros SPF de un dominio
+https://dmarcian.com/spf-survey/
+------------------------------------------------------------------------------------------
+
+DKIM (DomainKyes Identified Mail)
+Se usa para la autenticación de un correo electrónico que se envía
+
+Registro de DKIM 
+v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxTQIC7vZAHHZ7WVv/5x/qH1RAgMQI+y6Xtsn73rWOgeBQjHKbmIEIlgrebyWWFCXjmzIP0NYJrGehenmPWK5bF/TRDstbM8uVQCUWpoRAHzuhIxPSYW6k/w2+HdCECF2gnGmmw1cT6nHjfCyKGsM0On0HDvxP8I5YQIIlzNigP32n1hVnQP+UuInj0wLIdOBIWkHdnFewzGK2+qjF2wmEjx+vqHDnxdUTay5DfTGaqgA9AKjgXNjLEbKlEWvy0tj7UzQRHd24a5+2x/R4Pc7PF/y6OxAwYBZnEPO0sJwio4uqL9CYZcvaHGCLOIMwQmNTPMKGC9nt3PSjujfHUBX3wIDAQAB
+
+Tool
+https://mxtoolbox.com/dkim.aspx
+------------------------------------------------------------------------------------------
+
+DMARC (Informes de autenticación de mensajes basados en dominio y conformidad)
+llamado alineación para vincular el resultado de otros dos estándares de código abierto, SPF (una lista publicada de servidores que están autorizados para enviar 
+correo electrónico en nombre de un dominio) y DKIM (un sello de dominio a prueba de manipulaciones asociado con un correo electrónico)
+
+Registro DMARC basico
+v=DMARC1; p=quarantine; rua=mailto:postmaster@website.com 
+
+Tool
+Domain Health Checker: https://dmarcian.com/domain-checker/
+------------------------------------------------------------------------------------------
