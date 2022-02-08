@@ -134,10 +134,7 @@ Revisar los permisos en archivos potencialmente maliciosos
     -abrir /etc/passwd y poner el hash
     -su usuario 
   Tambien se puede crear un usuario solo copiando las caracteristicas del usuario en una nueva linea del archivo /etc/passwd
-  
-1-  
-  
-  
-  
+ 
+ 
   --------------------------------------------------------------
   
