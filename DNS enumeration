@@ -1,11 +1,55 @@
+DNS
+
+DNS (Sistema de Nombres de Dominio) proporciona una forma sencilla de comunicarnos con dispositivos en Internet sin recordar números complejos.
+
+Longitud máxima de un nombre de dominio = 253 caracteres
+
+Tipos de registros DNS
+
+AAAA Record
+Estos registros se resuelven en direcciones IPv6, por ejemplo, 2606:4700:20::681a:be5
+
+Registro CNAME
+Estos registros se resuelven en otro nombre de domini
+
+Récord MX
+Estos registros se resuelven en la dirección de los servidores que manejan el correo electrónico para el dominio que está consultando, por ejemplo, una respuesta de registro MX para tryhackme.com se parecería a alt1.aspmx.l.google.com . Estos registros también vienen con un indicador de prioridad. Esto le dice al cliente en qué orden probar los servidores, esto es perfecto si el servidor principal falla y el correo electrónico debe enviarse a un servidor de respaldo.
+
+Registro de texto
+Los registros TXT son campos de texto libre donde se pueden almacenar datos basados ​​en texto. Los registros TXT tienen múltiples usos, pero algunos comunes pueden ser enumerar servidores que tienen la autoridad para enviar un correo electrónico en nombre del dominio (esto puede ayudar en la batalla contra el correo no deseado y el correo electrónico falsificado). También se pueden usar para verificar la propiedad del nombre de dominio al registrarse en servicios de terceros.
+
 Herramientas para escanear subdominios
 
 > dnsenum
-> knockpy
-> sublist3r
-> theHarvester
-> nslookup
+Comando: perl dnsenum.pl –dnsserver [DNS SERVER] -f [/path/to/wordlist] [Domain]
 
-Virtual host research
+> knockpy
+Comando: knockpy domain.com
+
+> sublist3r
+Comando: python sublist3r.py -e google,yahoo,virustotal -d example.com
+
+> theHarvester
+Comando: theharvester -d google.com -l 500 -b all
+
+> nslookup
+Comando: nslookup -type=ns redhat.com
+//type=mx,soa,any
+
+> dig
+Comando: dig yahoo.com ANY +noall +answer
+DNS Reverse Lookup Comando: dig -x 72.30.38.140 +short
+
+Zona de transferencia
+Comando: host -la $DOMAIN. $DNSSERVER
+Comando: perl fierce.pl -dns $DOMAIN. -search $HOST
+Comando: dig axfr $TARGET @$DNSSERVER
+Comando: dnsrecon -d $DOMAIN -t axfr
+
+Virtual host research - Fuzzing
 
 wfuzz -c -w /usr/share/amass/wordlists/subdomains-top1mil-5000.txt -t30 --hw 3 -H "Host:FUZZ.wekor.thm" "http://wekor.thm/"
+ffuf -w /usr/share/amass/wordlists/subdomains-top1mil-5000.txt -u https://test-url/ -H "Host: FUZZ.site.com"
+
+Subdomain Takeover
+Creditos EdOverflow - https://github.com/EdOverflow/can-i-take-over-xyz
