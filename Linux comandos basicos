@@ -1,0 +1,67 @@
+Búsqueda y manipulación de texto.
+------------------------------------------------------------------------------------------------------------------------
+sed
+Cada línea de un archivo se lee individualmente, se procesa y finalmente se le da salida. 
+La función más importante de SED es buscar determinadas cadenas de caracteres en un archivo y sustituirlas por otras.
+
+hannibal@lecter:-$ echo "I need to try hard" | sed 's/hard/harder/'
+I need to try harder 
+------------------------------------------------------------------------------------------------------------------------
+grep
+Busca en los archivos de texto la aparición de una expresión regular determinada y genera
+cualquier línea que contenga una coincidencia con la salida estándar, que suele ser la pantalla del terminal
+
+hannibal@lecter:-$ ls - la /usr/bin | grep zip 
+------------------------------------------------------------------------------------------------------------------------
+cut
+Se utiliza para extraer una sección de texto de una línea y enviarlo a la salida estándar. 
+
+hannibal@lecter:-$ echo "I hack binades,web apps,mobile apps, and just about anything else" | cut - f 2 - d ","
+------------------------------------------------------------------------------------------------------------------------
+awk
+Es un lenguaje de programación diseñado para el procesamiento de texto y normalmente se usa como
+herramienta de extracción y generación de informes.
+
+hannibal@lecter:~$ echo "hetto::there::friend" I awk -F "::" '{print $1, $3}'
+hello friend
+------------------------------------------------------------------------------------------------------------------------
+wc 
+Lo utilizamos para contar en linux. Podemos contar palabras, letras, bytes o lineas de un archivo
+
+hannibal@lecter:-$ wc /ruta/archivo.txt
+60  237 2059 archivo.txt
+------------------------------------------------------------------------------------------------------------------------
+sort
+Ordena las líneas de un archivo (o su entrada estándar) y devuelve el resultado en su salida estándar.
+
+hannibal@lecter:~$ cat access.log | cut -d" "-f 1 | sort -u 
+------------------------------------------------------------------------------------------------------------------------
+uniq
+Sin especificar ningún parámetro simplemente omite los duplicados y muestra una salida de cadena única
+
+hannibal@lecter:~$ cat access.log | cut -d" "-f 1 | sort -u 
+------------------------------------------------------------------------------------------------------------------------
+Comparando archivos
+------------------------------------------------------------------------------------------------------------------------
+comm
+Compara dos archivos de texto, mostrando las líneas que son únicas para cada uno, como así como las líneas que tienen en común. 
+
+hannibal@lecter:~$ comm scan-a.txt scan-b.txt
+------------------------------------------------------------------------------------------------------------------------
+diff
+Se usa para detectar diferencias entre archivos, similar al comando comm. Sin embargo, diff es mucho más complejo y admite muchos formatos de salida. Dos de los más populares.
+Los formatos incluyen el formato de contexto (-c) y el formato unificado (-u).
+
+hannibal@lecter:-$ diff -c scan-a.txt scan-b.txt 
+------------------------------------------------------------------------------------------------------------------------
+Supervisión de archivos y comandos
+------------------------------------------------------------------------------------------------------------------------
+tail
+Monitorear las entradas del archivo de registro a medida que se escriben.
+hannibal@hannibal:-$ sudo tail -f /var/ log/ apache2/ access .log 
+
+------------------------------------------------------------------------------------------------------------------------
+watch
+Se usa para ejecutar un comando designado a intervalos regulares
+hannibal@hannibal:-$ watch -n 5 w 
+------------------------------------------------------------------------------------------------------------------------
