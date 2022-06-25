@@ -50,6 +50,7 @@ Virtual host research - Fuzzing
 
 wfuzz -c -w /usr/share/amass/wordlists/subdomains-top1mil-5000.txt -t30 --hw 3 -H "Host:FUZZ.wekor.thm" "http://wekor.thm/"
 ffuf -w /usr/share/amass/wordlists/subdomains-top1mil-5000.txt -u https://test-url/ -H "Host: FUZZ.site.com"
+gobuster vhost -u http://holo.live/ -w /usr/share/SecList/Discovery/DNS/subdomains-top1million-110000.txt
 
 Subdomain Takeover
 Creditos EdOverflow - https://github.com/EdOverflow/can-i-take-over-xyz
